@@ -48,8 +48,6 @@ El código está dividido en varias partes importantes:
         - RB0 como salida (LED).
         - Puerto D como salida (para la LCD).
 
-    Se desactiva el conversor analógico para usar pines digitales.
-
 ### Inicialización:
 
     LCD_Init(): Prepara la pantalla LCD para trabajar en modo 4 bits.

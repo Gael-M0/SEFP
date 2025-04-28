@@ -1,0 +1,97 @@
+Sistema de Alarma de Movimiento con Desactivacion Manual Permanente
+Universidad Cuauhtemoc
+Proyecto de Sistemas Embebidos
+Integrantes:
+• Cristian Romero
+• Gael Munoz
+Justificacion del Proyecto
+El objetivo es disenar un sistema embebido basado en el microcontrolador PIC16F877A capaz de detectar movimiento, activar alarmas visuales y sonoras, y permitir su desactivacion manual permanente. Ademas, se proyecta la integracion futura de comunicacion Bluetooth para alertar a un dispositivo movil, reforzando la interaccion hombre-maquina.
+Especificacion de Requisitos
+2.1 Requisitos Funcionales
+• Detectar movimiento usando un sensor PIR (HC-SR501).
+• Activar una alarma sonora (buzzer) y visual (LED) al detectar movimiento.
+• Permitir desactivar la alarma de forma permanente con un boton fisico.
+• Mantener el sistema desactivado hasta reinicio manual.
+• Enviar en el futuro una señal via UART a un modulo Bluetooth.
+2.2 Requisitos No Funcionales
+• Tiempo de respuesta menor a 500 ms tras deteccion.
+• Operacion continua de al menos 24 horas.
+• Uso exclusivo de señales digitales para control sencillo.
+• Consumo maximo en reposo de 30 mA.
+• Diseno modular para facilitar mantenimiento.
+• Hardware economico y de facil reposicion.
+2.3 Seleccion del Microcontrolador
+Se selecciono el PIC16F877A debido a:
+• 40 pines, suficientes para expansion futura.
+• Entradas/salidas digitales para control de sensores y actuadores.
+• ADC para posibles sensores analogicos en versiones avanzadas.
+• Modulo UART incorporado para comunicacion Bluetooth.
+• Bajo consumo de energia y alta estabilidad.
+• Conocimiento base sobre el Microcontrolador.
+Diseno del Sistema
+3.1 Arquitectura de Hardware
+Componentes principales:
+• PIC16F877A: Unidad de control.
+• Sensor PIR: Detecta movimiento (entrada RA0).
+• Boton Push: Desactiva alarma (entrada RA1).
+• LED Rojo: Alarma visual (salida RC1).
+• Buzzer: Alarma sonora (salida RC0).
+• Fuente 5V DC.
+• Modulo Bluetooth (en expansion futura).
+3.2 Arquitectura de Software
+El software sigue una estructura modular:
+• Inicializacion de puertos.
+• Monitoreo continuo del sensor PIR.
+• Activacion de alarmas al detectar movimiento.
+• Supervision del boton de desactivacion.
+• Reseteo solo por apagado o reinicio manual.
+3.3 Diagrama de Bloques
+Entrada: Sensor PIR y Boton Push
+Procesamiento: PIC16F877A
+Salida: LED rojo, buzzer, (futuro: Bluetooth)
+3.4 Diagrama de Flujo (DFlujo.png)
+El diagrama de flujo representa el funcionamiento logico del sistema de alarma basado en el microcontrolador PIC16F877A.
+En el se muestra el proceso desde la inicializacion de las entradas y salidas, el monitoreo continuo de movimiento a traves de un sensor PIR, la activacion de alarmas visuales (LED) y sonoras (buzzer), y el envio de una señal de alerta mediante un modulo Bluetooth cuando se detecta movimiento.
+Tambien describe como el usuario puede desactivar de forma permanente la alarma presionando un boton fisico, manteniendo el sistema en estado desactivado hasta que se realice un reinicio manual.
+Implementacion de Hardware y Software
+4.1 Hardware
+• Montaje inicial realizado en Protoboard.
+• Pruebas exitosas en simulador Proteus 8 (al menos la base de este, imagen Pr8).
+• Se implementaron resistencias de pull-up en el boton para evitar falsas detecciones.
+• Protecciones con resistencias de 300 ohm en el LED.
+4.2 Software
+• Programacion en C usando MPLAB X IDE.
+• Codigo modular, funciones separadas para lectura de entradas y activacion de salidas.
+• Se considera interrupcion externa en expansiones futuras.
+• Manejo basico de errores por rebote de boton.
+Plan de Pruebas
+5.1 Pruebas Unitarias
+• Verificar que el sensor PIR entrega señal digital correcta.
+• Verificar la respuesta de boton ante pulsaciones.
+• Confirmar encendido de LED y buzzer individualmente.
+5.2 Pruebas de Integracion
+• Verificar que el movimiento activa alarmas.
+• Confirmar que pulsar el boton apaga las alarmas permanentemente.
+5.3 Pruebas de Validacion
+• Validar que el sistema responde en menos de 500 ms.
+• Confirmar operacion ininterrumpida durante 24 horas de prueba.
+Resultados esperados:
+• Movimiento detectado -> LED y buzzer activos.
+• Boton pulsado -> LED y buzzer apagados hasta reinicio.
+• No movimiento -> Sin alarmas activas.
+Estado Actual del Proyecto
+• El sistema funciona correctamente en protoboard.
+• Sensor PIR detecta movimiento con alta precision.
+• El LED y el buzzer se activan simultaneamente.
+• El boton desactiva las alarmas de manera efectiva.
+• No se han detectado fallos de estabilidad tras mas de 24 horas de funcionamiento.
+Problemas detectados:
+• Falsas alarmas por cambios termicos extremos: Solucionado reubicando el sensor.
+• Rebotes en el boton: Solucionado anadiendo resistencia de pull-up de 10 k?.
+Analisis de Resultados y Conclusiones
+• El sistema cumple con todos los requisitos funcionales y no funcionales planteados.
+• Se demostro integracion exitosa entre sensores, actuadores y microcontrolador.
+• Se mejoro la robustez del sistema mediante correccion de ruidos electricos.
+• El diseno puede ampliarse hacia la inclusion de comunicacion Bluetooth con modulos HC-05/HC-06.
+Conclusion general: El proyecto es viable, robusto, eficiente y puede evolucionar a sistemas mas complejos de alarma inteligente.
+
